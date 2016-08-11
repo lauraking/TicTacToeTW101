@@ -17,11 +17,16 @@ public class Game {
 
 
     public void start() throws IOException {
-//        board.printBoard();
-        printStream.println("Player 1: Select your move\n>");
-        String moveLocation = reader.readLine();
-        board.update(moveLocation,"X");
-        board.printBoard();
 
+        promptUserMove(1,"X");
+        promptUserMove(2, "O");
+
+    }
+
+    private void promptUserMove(int player, String userShape) throws IOException {
+        printStream.println("Player "+player+": Select your move\n>");
+        String moveLocation = reader.readLine();
+        board.update(moveLocation,userShape);
+        board.printBoard();
     }
 }

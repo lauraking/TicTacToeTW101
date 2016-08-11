@@ -39,4 +39,13 @@ public class GameTest {
         verify(board).update("1", "X");
 
     }
+
+    @Test
+    public void shouldCallMoveOnBoardWhenSecondUserEntersNumber() throws Exception {
+        when(reader.readLine()).thenReturn("1","2");
+        game.start();
+        verify(board).update("1", "X");
+        verify(board).update("2", "O");
+
+    }
 }
