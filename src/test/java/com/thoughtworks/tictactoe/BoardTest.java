@@ -52,7 +52,7 @@ public class BoardTest {
 
     @Test
     public void shouldUpdate4ValueToXWhenUpdateCalledWith4X() throws Exception {
-        board.update("4","X");
+        board.update(4,"X");
         assertThat(boardState.get(3),is("X"));
     }
 

@@ -1,7 +1,6 @@
 package com.thoughtworks.tictactoe;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
@@ -33,8 +32,15 @@ public class Board {
 
 
 
-    public void update(String moveLocation, String userShape) {
-        Integer location = Integer.parseInt(moveLocation);
+    public void update(int location, String userShape) {
         boardState.set(location-1,userShape);
+    }
+
+    public Boolean isCellAvailable(int location) {
+        return false;
+    }
+
+    public boolean enterMove(Integer player, String shape) {
+        return false;
     }
 }

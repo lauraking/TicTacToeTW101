@@ -15,7 +15,10 @@ public class Main {
         Board board = new Board(printStream, boardState);
         board.printBoard();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Game game = new Game(printStream,board,reader);
+
+        Player firstPlayer = new Player(System.out,"X",board,1,reader);
+        Player secondPlayer = new Player(System.out,"O",board,2,reader);
+        Game game = new Game(printStream,board,reader,firstPlayer,secondPlayer);
         try {
             game.start();
         } catch (IOException e) {

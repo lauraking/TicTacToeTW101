@@ -4,12 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.util.List;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.contains;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class GameTest {
 
@@ -17,35 +18,71 @@ public class GameTest {
     private PrintStream printStream;
     private Game game;
     private BufferedReader reader;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
     @Before
     public void setUp() throws Exception {
         board = mock(Board.class);
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
-        game = new Game(printStream, board, reader);
+        firstPlayer = mock(Player.class);
+        secondPlayer = mock(Player.class);
+        game = new Game(printStream, board, reader, firstPlayer, secondPlayer);
     }
 
     @Test
-    public void shouldPromptFirstUserToSelectMoveLocationWhenGameStarts() throws Exception {
+    public void playerOneShouldMove() throws Exception {
         game.start();
-        verify(printStream).println(contains("Player 1: Select your move\n>"));
-    }
-
-    @Test
-    public void shouldCallMoveOnBoardWhenUserEntersNumber() throws Exception {
-        when(reader.readLine()).thenReturn("1");
-        game.start();
-        verify(board).update("1", "X");
+        verify(firstPlayer).move();
 
     }
 
     @Test
-    public void shouldCallMoveOnBoardWhenSecondUserEntersNumber() throws Exception {
-        when(reader.readLine()).thenReturn("1","2");
+    public void playerTwoShouldMove() throws Exception {
         game.start();
-        verify(board).update("1", "X");
-        verify(board).update("2", "O");
-
+        verify(secondPlayer).move();
     }
+    
+
+    //    @Test
+//    public void shouldPromptFirstUserToSelectMoveLocationWhenGameStarts() throws Exception {
+//        game.start();
+//        verify(printStream).println(contains("Player 1: Select your move\n>"));
+//    }
+//
+//    @Test
+//    public void shouldCallMoveOnBoardWhenUserEntersNumber() throws Exception {
+//        when(reader.readLine()).thenReturn("1");
+//        game.start();
+//        verify(board).update(1, "X");
+//
+//    }
+//
+//    @Test
+//    public void shouldCallMoveOnBoardWhenSecondUserEntersNumber() throws Exception {
+//        when(reader.readLine()).thenReturn("1","2");
+//        game.start();
+//        verify(board).update(1, "X");
+//        verify(board).update(2, "O");
+//
+//    }
+
+//    @Test
+//    public void shouldEnterTwoMovesIfFirstSquareTaken() throws IOException {
+//        when(board.enterMove(any(Integer.class),any(String.class))).thenReturn(false,true);
+//        when(reader.readLine()).thenReturn("1","2");
+//        game.movePlayer(1,"X");
+//        verify(board,times(2)).enterMove(any(Integer.class),any(String.class));
+//    }
+//
+//    @Test
+//    public void shouldEnterOneMoveIfFirstSquareFrees() throws IOException {
+//        when(board.enterMove(any(Integer.class),any(String.class))).thenReturn(true);
+//        when(reader.readLine()).thenReturn("2");
+//        game.movePlayer(1,"X");
+//        verify(board,times(1)).enterMove(any(Integer.class),any(String.class));
+//    }
+
+
 }
