@@ -27,10 +27,11 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldInitialLine() {
+    public void shouldPrintInitialLine() {
         board.printBoard();
         verify(printStream).println(contains("1|2|3\n-----\n4|5|6\n-----\n7|8|9"));
     }
+
 
     @Test
     public void shouldUpdate1ValueToXWhenUpdateCalledWith1X() throws Exception {

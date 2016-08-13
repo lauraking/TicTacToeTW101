@@ -28,14 +28,4 @@ public class Game {
 
     }
 
-//    public void movePlayer(int player, String playerShape) throws IOException {
-//        boolean completedMove = false;
-//
-//        while (!completedMove) {
-//            printStream.println("Player "+player+": Select your move\n>");
-//            String moveLocation = reader.readLine();
-//            int location = Integer.parseInt(moveLocation);
-//            completedMove = board.enterMove(location, playerShape);
-//        }
-//    }
 }

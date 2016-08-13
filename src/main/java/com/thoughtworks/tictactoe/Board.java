@@ -16,31 +16,22 @@ public class Board {
 
 
     public void printBoard() {
-        String firstLine = createRowString(1);
-        String secondLine = createRowString(2);
-        String thirdLine = createRowString(3);
-        String dashNewLines = "\n-----\n";
-        printStream.println(firstLine+dashNewLines+secondLine+dashNewLines+thirdLine);
+
+        String boardString = createBoardString();
+        printStream.println(boardString);
     }
 
 
-    private String createRowString(int i){
-        int index = 3*(i-1);
-        String returnString = boardState.get(index) + "|" + boardState.get(index+1) + "|" + boardState.get(index+2);
-        return returnString;
+    private String createBoardString() {
+        String formatter = "%s|%s|%s\n-----\n%s|%s|%s\n-----\n%s|%s|%s";
+        String boardString = String.format(formatter,boardState.toArray());
+        return boardString;
     }
-
 
 
     public void update(int location, String userShape) {
         boardState.set(location-1,userShape);
     }
 
-    public Boolean isCellAvailable(int location) {
-        return false;
-    }
 
-    public boolean enterMove(Integer player, String shape) {
-        return false;
-    }
 }
