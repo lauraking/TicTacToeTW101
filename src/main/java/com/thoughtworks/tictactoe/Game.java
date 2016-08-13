@@ -3,7 +3,6 @@ package com.thoughtworks.tictactoe;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.List;
 
 public class Game {
     private PrintStream printStream;

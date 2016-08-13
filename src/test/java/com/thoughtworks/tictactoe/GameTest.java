@@ -6,11 +6,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.*;
 
 public class GameTest {
@@ -59,46 +55,6 @@ public class GameTest {
         verify(firstPlayer,times(1)).move();
         verify(secondPlayer,times(1)).move();
     }
-    
-
-    //    @Test
-//    public void shouldPromptFirstUserToSelectMoveLocationWhenGameStarts() throws Exception {
-//        game.start();
-//        verify(printStream).println(contains("Player 1: Select your move\n>"));
-//    }
-//
-//    @Test
-//    public void shouldCallMoveOnBoardWhenUserEntersNumber() throws Exception {
-//        when(reader.readLine()).thenReturn("1");
-//        game.start();
-//        verify(board).update(1, "X");
-//
-//    }
-//
-//    @Test
-//    public void shouldCallMoveOnBoardWhenSecondUserEntersNumber() throws Exception {
-//        when(reader.readLine()).thenReturn("1","2");
-//        game.start();
-//        verify(board).update(1, "X");
-//        verify(board).update(2, "O");
-//
-//    }
-
-//    @Test
-//    public void shouldEnterTwoMovesIfFirstSquareTaken() throws IOException {
-//        when(board.enterMove(any(Integer.class),any(String.class))).thenReturn(false,true);
-//        when(reader.readLine()).thenReturn("1","2");
-//        game.movePlayer(1,"X");
-//        verify(board,times(2)).enterMove(any(Integer.class),any(String.class));
-//    }
-//
-//    @Test
-//    public void shouldEnterOneMoveIfFirstSquareFrees() throws IOException {
-//        when(board.enterMove(any(Integer.class),any(String.class))).thenReturn(true);
-//        when(reader.readLine()).thenReturn("2");
-//        game.movePlayer(1,"X");
-//        verify(board,times(1)).enterMove(any(Integer.class),any(String.class));
-//    }
 
 
 }
