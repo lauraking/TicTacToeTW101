@@ -25,10 +25,18 @@ public class Game {
     public void start() throws IOException {
         printStream.println("Hello Tic Tac Toe");
         board.printBoard();
-        firstPlayer.move();
-        board.printBoard();
-        secondPlayer.move();
-        board.printBoard();
+        boolean isOver = board.isFull();
+
+        while(!isOver) {
+            firstPlayer.move();
+            board.printBoard();
+
+            isOver = board.isFull();
+            if (isOver) break;
+            secondPlayer.move();
+            board.printBoard();
+            isOver = board.isFull();
+        }
 
     }
 

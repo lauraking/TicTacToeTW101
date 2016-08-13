@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.*;
@@ -42,6 +43,21 @@ public class GameTest {
     public void playerTwoShouldMove() throws Exception {
         game.start();
         verify(secondPlayer).move();
+    }
+
+    @Test
+    public void shouldEndWhenBoardIsFullFirstRound() throws IOException {
+        when(board.isFull()).thenReturn(true);
+        game.start();
+        verify(firstPlayer,never()).move();
+    }
+
+    @Test
+    public void shouldEndWhenBoardIsFull() throws IOException {
+        when(board.isFull()).thenReturn(false,false,true);
+        game.start();
+        verify(firstPlayer,times(1)).move();
+        verify(secondPlayer,times(1)).move();
     }
     
 

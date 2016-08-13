@@ -66,9 +66,23 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldRespondYesIfFreeCellIsRequested() throws Exception {
-        boardState = Arrays.asList("X","2","3","x","5","6","c","8","9");
+    public void shouldReportFullIfBoardIsFull() throws Exception {
+        boardState = Arrays.asList("X","X","X","x","X","X","X","X","X");
         board = new Board(printStream,boardState);
-        assertFalse(board.isCellAvailable(1));
+        assertTrue(board.isFull());
+    }
+
+    @Test
+    public void shouldReportNotFullOnNewBoard() throws Exception {
+        board = new Board(printStream,boardState);
+        assertFalse(board.isFull());
+    }
+
+
+    @Test
+    public void shouldReportNotFullOnHalfFullBoard() throws Exception {
+        boardState = Arrays.asList("1","X","3","x","4","X","6","X","X");
+        board = new Board(printStream,boardState);
+        assertFalse(board.isFull());
     }
 }

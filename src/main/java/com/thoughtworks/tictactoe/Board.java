@@ -41,4 +41,11 @@ public class Board {
         return isAvailable;
 
     }
+
+    public boolean isFull() {
+        for (int i = 1; i<=boardState.size(); i++) {
+            if (isCellAvailable(i)) return false;
+        }
+        return true;
+    }
 }
