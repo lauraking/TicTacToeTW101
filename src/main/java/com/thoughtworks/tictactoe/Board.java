@@ -34,4 +34,11 @@ public class Board {
     }
 
 
+    public boolean isCellAvailable(int location) {
+        String boardValue = (boardState.get(location - 1));
+        String locationString = String.valueOf(location);
+        boolean isAvailable = boardValue.equals(locationString);
+        return isAvailable;
+
+    }
 }

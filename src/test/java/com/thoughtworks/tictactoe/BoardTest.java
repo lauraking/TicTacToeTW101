@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -57,7 +59,16 @@ public class BoardTest {
         assertThat(boardState.get(3),is("X"));
     }
 
+    @Test
+    public void shouldRespondNoIfFullCellIsRequested() throws Exception {
+        board = new Board(printStream,boardState);
+        assertTrue(board.isCellAvailable(1));
+    }
 
-
-
+    @Test
+    public void shouldRespondYesIfFreeCellIsRequested() throws Exception {
+        boardState = Arrays.asList("X","2","3","x","5","6","c","8","9");
+        board = new Board(printStream,boardState);
+        assertFalse(board.isCellAvailable(1));
+    }
 }

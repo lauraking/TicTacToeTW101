@@ -9,11 +9,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello Tic Tac Toe");
         PrintStream printStream = System.out;
         List<String> boardState = Arrays.asList("1","2","3","4","5","6","7","8","9");
         Board board = new Board(printStream, boardState);
-        board.printBoard();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         Player firstPlayer = new Player(System.out,"X",board,1,reader);

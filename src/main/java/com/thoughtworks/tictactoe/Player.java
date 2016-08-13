@@ -25,7 +25,23 @@ public class Player {
 
 
     public void move() throws IOException {
+        printStream.println("Player "+playerNumber+": Please Select Your Move\n>");
+        int moveLocation = validMove();
+        board.update(moveLocation,playerShape);
 
+    }
+
+    private int validMove() throws IOException {
+        Boolean haveValidMove = false;
+        String input = "";
+        while(!haveValidMove) {
+            input = reader.readLine();
+            Integer i = Integer.valueOf(input);
+            haveValidMove = board.isCellAvailable(i);
+            if (!haveValidMove) printStream.println("Select Another Location");
+        }
+        int location = Integer.valueOf(input);
+        return location;
     }
 
 }
