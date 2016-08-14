@@ -17,6 +17,7 @@ public class GameTest {
     private BufferedReader reader;
     private Player firstPlayer;
     private Player secondPlayer;
+    private Referee referee;
 
     @Before
     public void setUp() throws Exception {
@@ -25,7 +26,8 @@ public class GameTest {
         reader = mock(BufferedReader.class);
         firstPlayer = mock(Player.class);
         secondPlayer = mock(Player.class);
-        game = new Game(printStream, board, reader, firstPlayer, secondPlayer);
+        referee = mock(Referee.class);
+        game = new Game(printStream, board, reader, firstPlayer, secondPlayer, referee);
     }
 
     @Test
@@ -74,6 +76,13 @@ public class GameTest {
         verify(secondPlayer, times(1)).move();
     }
 
+    @Test
+    public void shouldAskRefereeAfterMoveTo() throws IOException {
+        Referee referee = mock(Referee.class);
+        when(referee.isOver(any(Player.class))).thenReturn(true);
+        game.start();
+        verify(firstPlayer, never()).move();
+    }
 
 
 }

@@ -11,28 +11,32 @@ public class Game {
     private Player firstPlayer;
     private BufferedReader reader;
     private Player currentPlayer;
+    private Referee referee;
 
 
-    public Game(PrintStream printStream, Board board, BufferedReader reader, Player firstPlayer, Player secondPlayer) {
+    public Game(PrintStream printStream, Board board, BufferedReader reader, Player firstPlayer, Player secondPlayer, Referee referee) {
         this.printStream = printStream;
         this.board = board;
         this.reader = reader;
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
+        this.referee = referee;
     }
 
 
     public void start() throws IOException {
         printStream.println("Hello Tic Tac Toe");
         board.printBoard();
-        currentPlayer = firstPlayer;
+        currentPlayer = secondPlayer;
         boolean isOver = board.isFull() | board.isHorizontalWin();
+        boolean isOverReferee = referee.isOver(currentPlayer);
 
-        while(!isOver) {
+        while(!isOverReferee) {
+            switchPlayers();
             currentPlayer.move();
             board.printBoard();
             isOver = board.isFull() | board.isHorizontalWin();
-            switchPlayers();
+            isOverReferee = referee.isOver(currentPlayer);
         }
 
     }

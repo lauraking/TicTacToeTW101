@@ -16,7 +16,8 @@ public class Main {
 
         Player firstPlayer = new Player(System.out,"X",board,1,reader);
         Player secondPlayer = new Player(System.out,"O",board,2,reader);
-        Game game = new Game(printStream,board,reader,firstPlayer,secondPlayer);
+        Referee referee= new Referee();
+        Game game = new Game(printStream,board,reader,firstPlayer,secondPlayer, referee);
         try {
             game.start();
         } catch (IOException e) {
