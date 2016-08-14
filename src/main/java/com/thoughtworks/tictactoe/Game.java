@@ -10,6 +10,7 @@ public class Game {
     private Player secondPlayer;
     private Player firstPlayer;
     private BufferedReader reader;
+    private Player currentPlayer;
 
 
     public Game(PrintStream printStream, Board board, BufferedReader reader, Player firstPlayer, Player secondPlayer) {
@@ -24,19 +25,24 @@ public class Game {
     public void start() throws IOException {
         printStream.println("Hello Tic Tac Toe");
         board.printBoard();
-        Player currenPlayer = firstPlayer;
+        currentPlayer = firstPlayer;
         boolean isOver = board.isFull() | board.isHorizontalWin();
 
         while(!isOver) {
-            firstPlayer.move();
+            currentPlayer.move();
             board.printBoard();
             isOver = board.isFull() | board.isHorizontalWin();
-            if (isOver) break;
-            secondPlayer.move();
-            board.printBoard();
-            isOver = board.isFull() | board.isHorizontalWin();
+            switchPlayers();
         }
 
+    }
+
+    private void switchPlayers() {
+        if (currentPlayer.equals(firstPlayer)) {
+            currentPlayer = secondPlayer;
+        } else {
+            currentPlayer = firstPlayer;
+        }
     }
 
 }
