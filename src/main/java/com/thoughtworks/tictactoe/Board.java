@@ -48,4 +48,18 @@ public class Board {
         }
         return true;
     }
+
+    public boolean isHorizontalWin() {
+       for (int i = 1; i <=3; i++) {
+           if (isWinForRow(i)) return true;
+       }
+        return false;
+    }
+
+    private boolean isWinForRow(int row) {
+        int startIndex = 3*(row-1);
+        String leftMost = boardState.get(startIndex);
+        boolean rowIsSame = boardState.get(startIndex + 1).equals(leftMost) && boardState.get(startIndex + 2).equals(leftMost);
+        return rowIsSame;
+    }
 }

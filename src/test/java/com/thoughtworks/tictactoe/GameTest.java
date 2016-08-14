@@ -56,5 +56,24 @@ public class GameTest {
         verify(secondPlayer,times(1)).move();
     }
 
+    @Test
+    public void shouldEndWhenPlayerHasThreeInAHorizontalRow() throws IOException {
+        when(board.isFull()).thenReturn(false,false,false);
+        when(board.isHorizontalWin()).thenReturn(false,true);
+        game.start();
+        verify(firstPlayer,times(1)).move();
+        verify(secondPlayer,never()).move();
+    }
+
+    @Test
+    public void shouldEndWhenSecondPlayerHasThreeInAHorizontalRow() throws IOException {
+        when(board.isFull()).thenReturn(false, false, false);
+        when(board.isHorizontalWin()).thenReturn(false, false, true);
+        game.start();
+        verify(firstPlayer, times(1)).move();
+        verify(secondPlayer, times(1)).move();
+    }
+
+
 
 }

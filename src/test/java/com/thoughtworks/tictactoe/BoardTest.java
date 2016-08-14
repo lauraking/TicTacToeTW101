@@ -85,4 +85,17 @@ public class BoardTest {
         board = new Board(printStream,boardState);
         assertFalse(board.isFull());
     }
+
+    @Test
+    public void shouldReportNotWinWhenNoThreeInAHorizontalRow() throws Exception {
+        board = new Board(printStream,boardState);
+        assertFalse(board.isHorizontalWin());
+    }
+
+    @Test
+    public void shouldReportWinWhenThreeInAHorizontalRow() throws Exception {
+        boardState = Arrays.asList("X","X","X","x","4","X","6","X","X");
+        board = new Board(printStream,boardState);
+        assertTrue(board.isHorizontalWin());
+    }
 }
